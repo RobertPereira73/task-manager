@@ -1,0 +1,1 @@
+<label for="{{ $for }}" class="montserrat bold">{{ $message }}: </label>

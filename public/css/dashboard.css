@@ -1,0 +1,18 @@
+.title-container {
+    border-radius: 3px;
+}
+
+.tasks-container {
+    width: calc((100% / 3) - 4%);
+}
+
+.tasks-container .task-type {
+    text-transform: capitalize;
+}
+
+.tasks-container .task-list {
+    background: red;
+    min-height: 100px;
+    max-height: 300px;
+    overflow-y: scroll;
+}

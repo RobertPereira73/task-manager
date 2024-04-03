@@ -1,0 +1,12 @@
+.header-container {
+    background: var(--primary-color);
+}
+
+.header-container a {
+    text-decoration: none;
+    color: black;
+    transition: 0.25s;
+}
+.header-container a:hover {
+    color: red;
+}

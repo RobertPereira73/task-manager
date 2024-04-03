@@ -1,0 +1,58 @@
+body {
+    background: url('/images/background.jpg');
+}
+
+#app {
+    width: 100vw;
+    height: 100vh;
+}
+
+#app {
+    /* --bg-primario: #fff; */
+    --primary-color: #ddd;
+}
+
+.primary-color {
+    color: var(--primary-color);
+}
+
+.primary-background {
+    background: var(--primary-color);
+}
+
+.montserrat {
+    font-family: montserrat;
+}
+
+.tahoma {
+    font-family: tahoma;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 7px;
+}   
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

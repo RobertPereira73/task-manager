@@ -1,0 +1,42 @@
+.tasks-container .task {
+    width: 100%;
+    border-radius: 3px;
+    cursor: pointer;
+    background: var(--primary-color);
+    position: relative;
+}
+
+.task .icons {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 99999999999;
+}
+.task .icons button,
+.task .icons button:focus,
+.task .icons button:active {
+    background: transparent;
+    outline: none;
+    border: none;
+}
+
+.tasks-container[data-tasktype="to-do"] .title-container {
+    background: #FF6868;
+}
+.tasks-container[data-tasktype="to-do"] .task {
+    border-left: 6px solid #FF6868;
+}
+
+.tasks-container[data-tasktype="doing"] .title-container {
+    background: #FFBB64;
+}
+.tasks-container[data-tasktype="doing"] .task {
+    border-left: 6px solid #FFBB64;
+}
+
+.tasks-container[data-tasktype="done"] .title-container {
+    background: #A5DD9B;
+}
+.tasks-container[data-tasktype="done"] .task {
+    border-left: 6px solid #A5DD9B;
+}
