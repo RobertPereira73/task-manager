@@ -8,7 +8,7 @@
         {{ $taskIcon }}
     </div>
 
-    <ul id="{{ $taskType }}Sortable" class="p-0 task-list" type="none">
+    <ul id="{{ $taskType }}Sortable" class="p-0 task-list hiden" type="none">
         @if ($tasks->count())
             @foreach ($tasks as $task)
                 <x-task :task="$task" />
@@ -16,3 +16,7 @@
         @endif
     </ul>
 </div>
+
+@section('links')
+    <link rel="stylesheet" href="{{ asset('css/task.css') }}">
+@endsection

@@ -61,17 +61,51 @@ function taskInputs() {
 function removeTask(form) {
     let taskElement = form.closest('.task');
     taskElement.remove();
+    loadCount();
+}
+
+function sortPositions(show=true) {
+    let containers = document.querySelectorAll('.tasks-container .task-list');
+    containers.forEach((container) => {
+        !show 
+            ? container.classList.remove('show')
+            : container.classList.add('show');
+    })
+}
+
+function searchTask(value='') {
+    $('.task-list .task').addClass('hiden');
+    
+    if (!value) {
+        $('.task-list .task').removeClass('hiden');
+        loadCount();
+        return;
+    }
+
+    $(`
+        .task-list .task:has(.title:contains(${value})),
+        .task-list .task:has(.description:contains(${value}))`
+    ).removeClass('hiden');
+
+    loadCount();
 }
 
 function loadCount() {
     let lists = document.querySelectorAll('.tasks-container .task-list');
     lists.forEach(list => {
-        let count = list.querySelectorAll('li.task');
+        let count = list.querySelectorAll('.task:not(.hiden)');
         list.closest('.tasks-container').querySelector('.task-count').innerHTML = count.length;
     });
 }
 
 $( function() {
+    document.querySelector('#search').addEventListener('keyup', (event) => {
+        let string = event.target.value;
+        string = string.toLowerCase();
+
+        searchTask(string);
+    })
+
     $(`
         #to-doSortable,
         #doingSortable, 
@@ -85,4 +119,16 @@ $( function() {
         #doingSortable, 
         #doneSortable
     `).on('sortreceive', (event, ui) => updateStatusTask(event.target, ui.item[0]))
+
+    $(`
+        #to-doSortable,
+        #doingSortable, 
+        #doneSortable
+    `).on( "sortstart", () => sortPositions());
+
+    $(`
+        #to-doSortable,
+        #doingSortable, 
+        #doneSortable
+    `).on( "sortstop", () => sortPositions(false));
 });

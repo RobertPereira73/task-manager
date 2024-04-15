@@ -12,9 +12,7 @@
 
 @section('content')
     <section class="w-100 h-100">
-        <h1 class="primary-color mt-4">Dashboard</h1>
-    
-        <div class="w-100 mb-5 d-flex search-container">
+        <div class="w-100 my-5 d-flex search-container">
             <x-input name="search" placeholder="Search for the task title or description..."/>
 
             <x-button type="button" class="btn ms-2 bg-white">

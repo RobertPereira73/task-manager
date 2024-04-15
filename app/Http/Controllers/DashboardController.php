@@ -19,9 +19,11 @@ class DashboardController extends Controller
 
     public function index() : View
     { 
-        $todoTasks = $this->dashboardService->tasks('to-do');
-        $doingTasks = $this->dashboardService->tasks('doing');
-        $doneTasks = $this->dashboardService->tasks('done');
+        $userId = $this->userId();
+
+        $todoTasks = $this->dashboardService->tasks($userId, 'to-do');
+        $doingTasks = $this->dashboardService->tasks($userId, 'doing');
+        $doneTasks = $this->dashboardService->tasks($userId, 'done');
 
         return view('dashboard', [
             'todoTasks' => $todoTasks,
@@ -36,9 +38,10 @@ class DashboardController extends Controller
             'status' => ['required', Rule::in(['to-do', 'doing', 'done'])]
         ]);
 
+        $userId = $this->userId();
         $status = $request->status;
 
-        return $this->dashboardService->tasks($status);
+        return $this->dashboardService->tasks($userId, $status);
     }
 
     public function saveTask(Request $request) : Response
@@ -49,7 +52,8 @@ class DashboardController extends Controller
         ]);
 
         $id = $request->id;
-        $this->dashboardService->saveTask($request->input(), $id);
+        $userId = $this->userId();
+        $this->dashboardService->saveTask($userId, $id, $request->input());
  
         return response(true);
     }
@@ -79,5 +83,10 @@ class DashboardController extends Controller
         $this->dashboardService->deleteTask($id);
 
         return response(true);
+    }
+
+    private function userId() : int
+    {
+        return auth()->user()->id;
     }
 }
